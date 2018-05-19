@@ -19,11 +19,11 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import com.edujavaonline.brewer.controller.CervejasController;
 
 /**
- * Classe responsável por ensinar o Spring a encontrar os controllers. A
- * anotação Configuration diz que essa classe é uma classe de configuração. A
- * anotação ComponentScan ensina o Spring como encontrar as classes de
- * controllers. A anotação EnableWebMvc habilita essa configuração para um
- * projeto Web MVC. O Spring fornece alguns adaptadores p/ configuração. Esses
+ * Classe responsável por ensinar o Spring a encontrar os controllers. 
+ * A anotação Configuration diz que essa classe é uma classe de configuração.
+ * A anotação ComponentScan ensina o Spring como encontrar as classes de controllers. 
+ * A anotação EnableWebMvc habilita essa configuração para um projeto Web MVC.
+ * O Spring fornece alguns adaptadores p/ configuração. Esses
  * adaptadores são classes que podemos extender nas classes de configurações
  * para facilitar a configuração
  * 
@@ -97,7 +97,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
 /*
  * O aplicationContext é um objeto do Spring. Quando a aplicação acaba de subir
- * é possível receber este applicationContext. Para recebo tem que implementar a
+ * é possível receber este applicationContext. Para receber tem que implementar a
  * interface ApplicationContextAware. Aware, porque eu desejo ser informado
  * disso.
  */
