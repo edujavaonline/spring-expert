@@ -28,6 +28,8 @@ public class CervejasController {
 		
 		attributes.addFlashAttribute("mensagem", "Formulário OK!");
 		System.out.println(">>>>>>sku:" + cerveja.getSku());
+		System.out.println(">>>>>>nome:" + cerveja.getNome());
+		System.out.println(">>>>>>descrição:" + cerveja.getDescricao());
 		return "redirect:/cervejas/novo";
 	}
 }
