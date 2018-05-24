@@ -19,6 +19,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.edujavaonline.brewer.controller.CervejasController;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+
 /**
  * Classe responsável por ensinar o Spring a encontrar os controllers. 
  * A anotação Configuration diz que essa classe é uma classe de configuração.
@@ -62,6 +64,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	 * SpringTemplateEngine é uma implementação do ITemplateEngine. Este método ele
 	 * tem a dependência do templateResolver que é passado por parâmetro no método
 	 * setTemplateResolver. 
+	 * O método addDialect para adicionarmos o dialeto, inclusive podemos criar o nosso próprio dialeto. Utilizamos
+	 * este método para utilizar o Thymeleaf - Layout Dialect.
 	 * Devemos utilizar a anotação Bean para que este método possa estar disponível para aplicação Spring, ou seja, 
 	 * este objeto vai ficar disponível dentro do contexto do Spring
 	 *  
@@ -72,6 +76,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
+		engine.addDialect(new LayoutDialect());
 		return engine;
 	}
 
