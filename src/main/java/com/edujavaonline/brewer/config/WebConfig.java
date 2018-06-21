@@ -61,7 +61,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	
 	/**
 	 * Através do TemplateEngine que conseguimos processar os arquivos HTML.
-	 * SpringTemplateEngine é uma implementação do ITemplateEngine. Este método ele
+	 * SpringTemplateEngine é uma implementação do ITemplateEngine. Este método 
 	 * tem a dependência do templateResolver que é passado por parâmetro no método
 	 * setTemplateResolver. 
 	 * O método addDialect para adicionarmos o dialeto, inclusive podemos criar o nosso próprio dialeto. Utilizamos
@@ -84,7 +84,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	 * SpringResourceTemplateResolver é para resolver templates do Spring. O método
 	 * setApplicationContext eu recebo um objeto applicationContext, a documentação
 	 * do Thymeleaf diz que precisamos dele. O método setPrefix ele informa aonde
-	 * estão os templates. o método setTemplateMode informa qual é o modo de
+	 * estão os templates. O método setTemplateMode informa qual é o modo de
 	 * template que estamos trabalhando.
 	 * 
 	 * @return
