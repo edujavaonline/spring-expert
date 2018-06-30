@@ -15,12 +15,16 @@ import com.edujavaonline.brewer.model.Cerveja;
 import com.edujavaonline.brewer.model.Origem;
 import com.edujavaonline.brewer.model.Sabor;
 import com.edujavaonline.brewer.repository.Estilos;
+import com.edujavaonline.brewer.service.CadastroCervejaService;
 
 @Controller
 public class CervejasController {
 	
 	@Autowired
 	private Estilos estilos;
+	
+	@Autowired
+	private CadastroCervejaService cadastroCervejaService;
 
 	@RequestMapping("/cervejas/novo")
 	public ModelAndView novo(Cerveja cerveja) {		
@@ -33,14 +37,13 @@ public class CervejasController {
 	
 	@RequestMapping(value = "/cervejas/novo", method=RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
-		/*if(result.hasErrors()) {
+		if(result.hasErrors()) {
 			return novo(cerveja);
-		}*/
+		}
+		cadastroCervejaService.salvar(cerveja);
 		
 		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
-		System.out.println(">>>>>>sku:" + cerveja.getSku());
-		System.out.println(">>>>>>Sabor:" + cerveja.getSabor());
-		System.out.println(">>>>>>Origem:" + cerveja.getOrigem());
+		
 		return new ModelAndView("redirect:/cervejas/novo");
 	}	
 	

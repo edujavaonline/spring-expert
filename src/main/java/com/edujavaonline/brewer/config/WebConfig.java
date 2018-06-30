@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -18,6 +20,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.edujavaonline.brewer.controller.CervejasController;
+import com.edujavaonline.brewer.converter.EstiloConverter;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -105,6 +108,18 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	@Override	
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("**/").addResourceLocations("classpath:/static/");
+	}
+	/**
+	 * Através deste método, registramos o nosso converter
+	 * É muito importante que este método se chame mvcConversionService().
+	 * Isso porque o Spring vai procurar um Bean que tenha esse nome para procurar os conversores.
+	 * @return
+	 */
+	@Bean
+	public FormattingConversionService mvcConversionService() {
+		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+		conversionService.addConverter(new EstiloConverter());
+		return conversionService;
 	}
 
 }
