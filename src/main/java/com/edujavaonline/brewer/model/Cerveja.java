@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -35,27 +39,40 @@ public class Cerveja implements Serializable{
 	private String sku;
 	
 	@NotBlank(message = "Nome é obrigatório!")
+	@Size(max = 50, message = "O tamanho do nome não pode ser maior que 50!")
 	private String nome;	
 	
-	@Size(min=1, max=50 , message = "O tamanho da descrição deve estar entre 1 e 50!")
+	@NotBlank(message = "Descrição é obrigatória!")
+	@Size(max=50 , message = "O tamanho da descrição deve estar entre 1 e 50!")
 	private String descricao;
 	
+	@NotNull(message = "Valor é obrigatório!")
+	@DecimalMin(value = "1.00", message = "O valor da cerveja não pode ser menor que R$1,00!")
+	@DecimalMax(value = "999.99", message = "O valor da cerveja não pode ser maior que R$999,99!")
 	private BigDecimal valor;
 	
+	@NotNull(message = "Teor alcóolico é obrigatório!")
+	@DecimalMax(value = "100.0", message = "O valor do teor alcóolico não pode ser maior que 100%!")
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 	
+	@NotNull(message = "Comissão é obrigatória!")
+	@DecimalMax(value = "50.0", message = "A comissão não pode ser maior que 50%!")
 	private BigDecimal comissao;
 	
 	@Column(name = "quantidade_estoque")
+	@Max(value = 9999, message = "A quantidade de estoque não pode ser maior que 9.999")
 	private Integer quantidadeEstoque;
 	
+	@NotNull(message = "Origem é obrigatória!")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 	
+	@NotNull(message = "Sabor é obrigatório!")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 	
+	@NotNull(message = "Estilo é obrigatório!")
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
