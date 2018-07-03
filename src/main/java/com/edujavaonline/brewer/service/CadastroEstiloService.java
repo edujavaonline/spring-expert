@@ -1,11 +1,14 @@
 package com.edujavaonline.brewer.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.edujavaonline.brewer.model.Estilo;
 import com.edujavaonline.brewer.repository.Estilos;
+import com.edujavaonline.brewer.service.exception.NomeEstiloJaCadastrado;
 
 @Service
 public class CadastroEstiloService {
@@ -15,6 +18,10 @@ public class CadastroEstiloService {
 	
 	@Transactional
 	public void salvar(Estilo estilo) {
+		Optional<Estilo> estiloOptional = estilos.findByNomeIgnoreCase(estilo.getNome());
+		if(estiloOptional.isPresent()) {
+			throw new NomeEstiloJaCadastrado("Nome do estilo já cadastrado!");
+		}
 		estilos.save(estilo);
 	}
 }
