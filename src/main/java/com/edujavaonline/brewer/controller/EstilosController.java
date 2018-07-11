@@ -52,10 +52,8 @@ public class EstilosController {
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result) {
 		if(result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
-		}
-		
-		estilo = cadastroEstiloService.salvar(estilo);		
-		
+		}		
+		estilo = cadastroEstiloService.salvar(estilo);			
 		return ResponseEntity.ok(estilo);
 	}
 
